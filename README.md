@@ -131,3 +131,66 @@ class FeedbackController extends Controller
     });
     ```
 -   disable csrfToken for "api/v1" -> app/Http/Middleware/VerifyCsrfToken.php
+
+## Realtime feature
+
+-   install laravel web socket
+
+    ```
+    composer require beyondcode/laravel-websockets
+    ```
+
+-   publish migration dari laravel-websockets
+    ```
+    php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
+    ```
+-   php artisan migrate
+-   install Pusher SDK
+    ```
+    composer require pusher/pusher-php-server "~3.0"
+    ```
+-   ganti BROADCAST_DRIVER menjadi pusher di `.env`
+-   ubah `config/broadcasting.php`
+    ```
+                'options' => [
+                 'cluster' => env('PUSHER_APP_CLUSTER'),
+                 'encrypted' => true,
+                 'host' => '127.0.0.1',
+                 'port' => 6001,
+                 'scheme' => 'http',
+             ],
+    ```
+-   ubah config di `.env`
+
+    ```
+    PUSHER_APP_ID=realtime-feedback
+    PUSHER_APP_KEY=pusherKey
+    PUSHER_APP_SECRET=pusherSecret
+    PUSHER_APP_CLUSTER=mt1
+
+    MIX_PUSHER_APP_KEY=pusherKey
+    MIX_PUSHER_APP_CLUSTER=mt1
+
+    ```
+
+-   ubah bootstrap.js (uncomment)
+
+    ```
+    import Echo from "laravel-echo"
+
+    window.Pusher = require('pusher-js');
+
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: 'your-pusher-key',
+        wsHost: window.location.hostname,
+        wsPort: 6001,
+        disableStats: true,
+    });
+
+    ```
+
+-   websocket serve
+    ```
+    php artisan websockets:serve
+    ```
