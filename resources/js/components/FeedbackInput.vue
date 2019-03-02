@@ -2,13 +2,13 @@
   <div class="container">
     <div v-if="status != 'SUCCESS'">
       <div class="row mt-5">
-        <div class="col-md-8 offset-2 text-center">
-          <h1>Berikan 3 kata tentang Tutorial Ini</h1>
+        <div class="col-md-8 offset-md-2 text-center">
+          <h1>Berikan 3 kata tentang tutorial ini</h1>
         </div>
       </div>
 
       <div class="row mt-5">
-        <div class="col-md-6 offset-3">
+        <div class="col-md-6 offset-md-3">
           <input
             type="text"
             class="form-control form-control-lg"
@@ -30,7 +30,7 @@
 
     <div class="mt-5" v-if="status == 'SUCCESS'">
       <div class="row">
-        <div class="col-md-6 offset-3">
+        <div class="col-md-6 offset-md-3">
           <div class="alert alert-success">{{message}}</div>
         </div>
       </div>
