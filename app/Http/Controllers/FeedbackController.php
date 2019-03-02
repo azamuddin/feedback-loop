@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FeedbackReceived;
 use App\Feedback;
 use Illuminate\Http\Request;
 
@@ -38,15 +39,36 @@ class FeedbackController extends Controller
             $this->createOrIncrement($word);
         }
 
+        // broadcast with new data
+        $data = json_decode($this->getData());
+        broadcast(new FeedbackReceived($data));
+
         return response()->json("OK");
     }
 
     public function dashboard()
     {
-        $top_ten = Feedback::orderBy('count', 'DESC')->get()->take(10);
-        return response()->json([
-            'data' => $top_ten,
-        ]);
+        return view('dashboard');
+    }
+
+    public function dashboardData()
+    {
+        return response()->json($this->getData());
+    }
+
+    protected function getData()
+    {
+        $top_ten =
+        Feedback::orderBy('count', 'DESC')
+            ->get()
+            ->take(10);
+
+        return $top_ten;
+    }
+
+    public function input()
+    {
+        return view('input');
     }
 
     protected function createOrIncrement(String $word)

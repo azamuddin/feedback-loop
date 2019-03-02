@@ -1,5 +1,10 @@
 # realtime-feedback
 
+## Requirements
+
+-   PHP versi 7.1 ke atas
+-   Node + NPM
+
 ## Langkah
 
 1. Buat project laravel baru
@@ -93,7 +98,7 @@ class FeedbackController extends Controller
         return response()->json("OK");
     }
 
-    public function dashboard()
+    protected function getData()
     {
         $top_ten = Feedback::orderBy('count', 'DESC')->get()->take(10);
         return response()->json([
@@ -134,6 +139,8 @@ class FeedbackController extends Controller
 
 ## Realtime feature
 
+### Laravel websockets
+
 -   install laravel web socket
 
     ```
@@ -145,6 +152,9 @@ class FeedbackController extends Controller
     php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
     ```
 -   php artisan migrate
+
+### Broadcasting
+
 -   install Pusher SDK
     ```
     composer require pusher/pusher-php-server "~3.0"
@@ -154,7 +164,7 @@ class FeedbackController extends Controller
     ```
                 'options' => [
                  'cluster' => env('PUSHER_APP_CLUSTER'),
-                 'encrypted' => true,
+                 'encrypted' => false,
                  'host' => '127.0.0.1',
                  'port' => 6001,
                  'scheme' => 'http',
@@ -191,6 +201,181 @@ class FeedbackController extends Controller
     ```
 
 -   websocket serve
+
     ```
     php artisan websockets:serve
     ```
+
+-   Uncomment broadcasting provider in `app/config.php`
+    ```
+     App\Providers\BroadcastServiceProvider::class,
+    ```
+-   buat Event `php artisan make:event FeedbackReceived`
+-   Configure `FeedbackReceived`
+
+    ```
+        <?php
+
+        namespace App\Events;
+
+        use Illuminate\Broadcasting\Channel;
+        use Illuminate\Broadcasting\InteractsWithSockets;
+        use Illuminate\Foundation\Events\Dispatchable;
+        use Illuminate\Queue\SerializesModels;
+
+        class FeedbackReceived
+        {
+            use Dispatchable, InteractsWithSockets, SerializesModels;
+
+            /**
+            * Create a new event instance.
+            *
+            * @return void
+            */
+            public function __construct($data)
+            {
+                $this->payload = $data;
+            }
+
+            public function broadcastWith()
+            {
+                return $this->payload;
+            }
+
+            /**
+            * Get the channels the event should broadcast on.
+            *
+            * @return \Illuminate\Broadcasting\Channel|array
+            */
+            public function broadcastOn()
+            {
+                return new Channel('feedback-received');
+            }
+        }
+    ```
+
+-   add broadcast in FeedbackController.store
+    ```
+        // broadcast with new data
+        $data = json_decode($this->getData());
+        broadcast(new FeedbackReceived($data));
+    ```
+
+### Laravel Mix
+
+-   npm install
+-   npm install laravel-echo --save
+-   npm install pusher-js --save
+-   npm run watch
+-   install laravel-echo dan pusher-js
+
+### User Interface
+
+-   Uncomment line di `resources/js/app.js`
+
+    ```
+
+    const files = require.context("./", true, /\.vue$/i);
+    files.keys().map(key =>
+        Vue.component(
+            key
+                .split("/")
+                .pop()
+                .split(".")[0],
+            files(key).default
+        )
+    );
+    ```
+
+#### Input feedback
+
+-   Buat routes untuk input feedback
+
+    ```
+    Route::get('feedback/input', 'FeedbackController@input');
+    ```
+
+-   Buat input method di `FeedbackController`
+    ```
+    public function input(){
+        return view('input');
+    }
+    ```
+-   Buat view input di `resources/views/input.blade.php`
+
+    ```
+    <html>
+         <head>
+             <title>Feedback Loop</title>
+             <link rel="stylesheet" href="/css/app.css"/>
+         </head>
+         <body>
+         <div id="app">
+
+         </div>
+         <script src="/js/app.js"></script>
+         </body>
+     </html>
+    ```
+
+-   Buat vue component feedback-input di `resources/js/components/FeedbackInput.Vue`
+
+-   Gunakan component feedback-input di view `input.blade.php`
+    ```
+     <html>
+         <head>
+             <title>Feedback Loop</title>
+         </head>
+         <body>
+         <div id="app">
+             <feedback-input></feedback-input>
+         </div>
+         <script src="/js/app.js"></script>
+         </body>
+     </html>
+    ```
+
+#### Dashboard
+
+-   Buat routes untuk dashboard
+    ```
+    Route::get('feedback/dashboard', 'FeedbackController@dashboard');
+    ```
+-   buat method dashboard di FeedbackController
+    ```
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
+    ```
+-   buat view di resources/views/dashboard.blade.php
+
+    ```
+    <html>
+        <head>
+            <title>Feedback Loop</title>
+            <link rel="stylesheet" href="/css/app.css"/>
+        </head>
+        <body>
+        <div id="app">
+            <feedback-dashboard></feedback-dashboard>
+        </div>
+        <script src="/js/app.js"></script>
+        </body>
+    </html>
+    ```
+
+-   buat method di controller feedback
+
+    ```
+    public function dashboardData()
+    {
+        return response()->json($this->getData());
+    }
+    ```
+
+-   buat routes untuk mengambil data via API
+    ```
+    Route::get('feedback/data', 'FeedbackController@dashboardData');
+    ```
+-   buat feedback-dashboard vue component di `resources/js/components/FeedbackDashboard.vue`
