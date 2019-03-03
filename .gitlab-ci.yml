@@ -19,7 +19,7 @@ deploy_staging:
 
 deploy_production:
   stage: deploy
-  envidonment: production
+  environment: production
   only:
     - tags
   script:
