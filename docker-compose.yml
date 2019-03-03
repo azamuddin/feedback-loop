@@ -1,0 +1,15 @@
+version: "2"
+# define all services
+services:
+  # our service is called laravel ;-)
+  feedback-loop:
+    env_file:
+      - .env
+    image: azamuddin/feedback-loop
+    # we want to use the image which is build from our Dockerfile
+    build: .
+    # apache is running on port 80 but we want to expose this to port 4000 on our local machine
+    ports:
+      - "1339:80"
+      - "6001:6001"
+    # we depending on the mysql backend

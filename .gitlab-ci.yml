@@ -1,4 +1,4 @@
-image: php:7.1.26-zts-alpine3.8
+image: php:7.1.9-apache
 
 stages:
   - build
@@ -6,7 +6,8 @@ stages:
 
 dependency_installs:
   stage: build
-  script: which php
+  script:
+    - composer install
 
 deploy_staging:
   stage: deploy
@@ -23,5 +24,7 @@ deploy_production:
   only:
     - tags
   script:
+    - docker-compose build
+    - docker-compose push
     - echo "Deploying tag to production"
     - echo $GREETING

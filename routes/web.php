@@ -16,5 +16,6 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('feedback/data', 'FeedbackController@dashboardData');
 });
 
+Route::get('/', 'FeedbackController@input');
 Route::get('feedback/input', 'FeedbackController@input');
 Route::get('feedback/dashboard', 'FeedbackController@dashboard');
