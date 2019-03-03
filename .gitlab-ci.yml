@@ -1,4 +1,27 @@
 image: php:7.1.26-zts-alpine3.8
 
+stages:
+  - build
+  - deploy
+
 dependency_installs:
+  stage: build
   script: which php
+
+deploy_staging:
+  stage: deploy
+  environment: staging
+  only:
+    - master
+  script:
+    - echo "Deploying master to staging"
+    - echo $GREETING
+
+deploy_production:
+  stage: deploy
+  envidonment: production
+  only:
+    - tags
+  script:
+    - echo "Deploying tag to production"
+    - echo $GREETING
