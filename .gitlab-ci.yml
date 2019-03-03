@@ -1,0 +1,4 @@
+image: 7.1.26-zts-alpine3.8
+
+dependency_installs:
+  script: which php
