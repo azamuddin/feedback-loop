@@ -3,7 +3,7 @@
     <div v-if="status != 'SUCCESS'">
       <div class="row mt-5">
         <div class="col-md-8 offset-md-2 text-center">
-          <h1>Gambarkan dengan 3 kata, Bagaimana Visi anda terhadap BPN pada tahun 2020.</h1>
+          <h1>Gambarkan dengan 3 kata, bagaimana tutorial realtime app ini?</h1>
         </div>
       </div>
 

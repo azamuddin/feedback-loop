@@ -2,7 +2,10 @@
   <div class="container">
     <div class="row mt-5">
       <div class="col-md-12">
-        <h1 class="text-center">Top Word</h1>
+        <h1 class="text-center">Top Word
+          <br>
+          <small>Data akan direset secara berkala.</small>
+        </h1>
         <hr>
       </div>
     </div>

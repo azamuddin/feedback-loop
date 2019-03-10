@@ -37,6 +37,8 @@ RUN sed -i -e "s/html/html\/public/g" /etc/apache2/sites-enabled/000-default.con
 # enable apache module rewrite
 RUN a2enmod rewrite
 
+RUN echo "makesure not using cache"
+
 #copy source files and run composer
 COPY . $APP_HOME
 
