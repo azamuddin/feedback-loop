@@ -4,8 +4,8 @@
 
 ## Download ebook
 
-Kamu dapat mendownload ebook ini di sini [https://get.arrowfunxtion.com/ebook-realtime-app-laravel
-](https://get.arrowfunxtion.com/ebook-realtime-app-laravel)
+Kamu dapat mendownload ebook ini di sini [https://get.arrowfunxtion.com/download-ebook-gratis---laravel-realtime-app
+](https://get.arrowfunxtion.com/download-ebook-gratis---laravel-realtime-app)
 
 ## Apakah ebook ini gratis?
 
