@@ -14,7 +14,7 @@ Link source code ada di bagian penutup ya. Saya tahu ada yang pertama dicari ada
 
 Muhammad Azamuddin, Fullstack Developer, lulusan akuntansi bukan IT, penulis ebook Be Fullstack Developer Laravel - Vue [(https://buku-laravel-vue.com)](https://buku-laravel-vue.com/arrowfunxtion) bersama Hafid Mukhlasin yang sudah dipercaya oleh 1200+ member. Tech Speaker, meskipun udah lama off karena kesibukkan dengan anak :D kalo mau mengundang tetep dipersilahkan.
 
-Senang dengan Laravel, Nodejs, Sails, React tapi tidak menutup diri menggunakan teknologi-teknologi lainnya jika diperlukan. Pernah bekerja di beberapa tempat, freelance writer di media Brazil, bekerja untuk Republik Indonesia, remote di perusahaan real estate nomor 1 di Amerika (tapi terpaksa dilepas supaya "fokus" meskipun sempet galau banget), creator produk-produk digital yang sudah terjual lebih dari 5000 items di Indonesia dan Malaysia bersama rekannya, Nofi Bayu Darmawan. Tapi tetep newbie dibandingkan para master, dan selalu butuh waktu buat belajar dan mengembangkan diri. Barakallah.
+Senang dengan Laravel, Nodejs, Sails, React tapi tidak menutup diri menggunakan teknologi-teknologi lainnya jika diperlukan. Pernah bekerja di beberapa tempat, freelance writer di media Brazil, bekerja untuk Republik Indonesia, remote di Keller Williams (tapi terpaksa dilepas supaya "fokus" meskipun sempet galau banget), creator produk-produk digital yang sudah terjual lebih dari 5000 items di Indonesia dan Malaysia bersama rekannya, Nofi Bayu Darmawan. Tapi tetep newbie dibandingkan para master, dan selalu butuh waktu buat belajar dan mengembangkan diri. Barakallah.
 
 Facebook: [https://facebook.com/script.holic](https://facebook.com/script.holic)<br/>
 Email: mas.azamuddin@gmail.com
