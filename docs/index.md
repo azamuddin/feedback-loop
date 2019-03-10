@@ -4,6 +4,12 @@
 
 # Panduan Praktis Membuat Realtime App dengan Laravel Websockets
 
+Demo App: Feedback Loop <br/>
+Dashboard: http://feedback.arrowfunxtion.com/feedback/dashboard <br/>
+Input Feedback : http://feedback.arrowfunxtion.com <br/>
+
+Gunakan tab / window yang berbeda untuk melihat efek realtime.
+
 ## Apakah ebook ini gratis?
 
 Ya, dan kamu boleh membagikan ke siapapun, dan yap, silahkan bagikan jika bermanfaat. Tidak diperbolehkan mengubah sebagian atau keseluruhan konten di ebook ini tanpa seizin penulis.
