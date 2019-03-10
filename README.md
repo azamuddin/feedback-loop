@@ -2,6 +2,14 @@
 
 <div class="page"></div>
 
+## Demo
+
+Demo App: Feedback Loop <br/>
+Dashboard: [http://feedback.arrowfunxtion.com/feedback/dashboard](http://feedback.arrowfunxtion.com/feedback/dashboard) <br/>
+Input Feedback : [http://feedback.arrowfunxtion.com](http://feedback.arrowfunxtion.com) <br/>
+
+Gunakan tab / window yang berbeda untuk melihat efek realtime.
+
 ## Download ebook
 
 Kamu dapat mendownload ebook ini di sini [https://get.arrowfunxtion.com/download-ebook-gratis---laravel-realtime-app
